@@ -26,8 +26,8 @@ func _physics_process(delta: float) -> void:
 	print(move_toward(-100, 30, -1 * 3))
 	
 	if direction:
-		velocity.x = move_toward(velocity.x, direction.x * MAX_SPEED, abs(direction.x * ACC))
-		velocity.y = move_toward(velocity.y, direction.y * MAX_SPEED, abs(direction.y * ACC))
+		velocity.x = move_toward(velocity.x, sign(direction.x) * MAX_SPEED, abs(direction.x * ACC))
+		velocity.y = move_toward(velocity.y, sign(direction.y) * MAX_SPEED, abs(direction.y * ACC))
 	else:
 		velocity.x = move_toward(velocity.x, 0, DEC)
 		velocity.y = move_toward(velocity.y, 0, DEC)
