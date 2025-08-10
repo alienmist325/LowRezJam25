@@ -6,9 +6,20 @@ const ACC = 20 * MULT
 const DEC = 5 * MULT
 const MAX_SPEED = 40 * MULT
 
+@onready var animPlayer = $CollisionShape2D/AnimationPlayer
+
+var isAttacking = false
+
 func _physics_process(delta: float) -> void:
+	
 	var jitterFixer = fix_jitter.JitterFixer.new()
 	# var altJitterFixer = fix_jitter.AltJitterFixer.new(position)
+	
+	# animPlayer.play("moving")
+	
+	if Input.is_action_just_pressed("attack"):
+		isAttacking = true
+		animPlayer.play("attack")
 	
 	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
@@ -27,3 +38,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	position = jitterFixer.fix_jitter(direction, position)
 	# position = altJitterFixer.alt_fix_jitter(velocity, position)
+
+
+func _on_attack_area_entered(area: Area2D) -> void:
+	if area.is_in_group("hurtbox"):
+		print("signal here")
+		area.take_damage()
+		

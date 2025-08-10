@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2orr8206d2u7"]
+[gd_scene load_steps=4 format=3 uid="uid://lep5wqri8ln4"]
 
 [ext_resource type="Texture2D" uid="uid://cyyrn3owo5mak" path="res://assets/temp_block.png" id="1_25b4u"]
+[ext_resource type="Script" uid="uid://cny0eltuls8sw" path="res://scenes/block.gd" id="1_cgrg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcwje"]
 size = Vector2(2, 2)
 
 [node name="Block" type="Area2D"]
 collision_layer = 2
+script = ExtResource("1_cgrg5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xcwje")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
