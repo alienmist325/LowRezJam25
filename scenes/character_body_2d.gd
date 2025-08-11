@@ -39,9 +39,30 @@ func _physics_process(delta: float) -> void:
 	position = jitterFixer.fix_jitter(direction, position)
 	# position = altJitterFixer.alt_fix_jitter(velocity, position)
 
+func _ready():
+	animPlayer.play("RESET")
 
 func _on_attack_area_entered(area: Area2D) -> void:
-	if area.is_in_group("hurtbox"):
-		print("signal here")
-		area.take_damage()
+	if area.is_in_group("Breakable"):
+		# print("should break")
+		area.start_taking_damage()
 		
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	animPlayer.play("RESET")
+
+
+func _on_attack_body_entered(body: Node2D) -> void:
+	# print("signal here1")
+	# print(body.name)
+	if body.is_in_group("hurtbox"):
+		pass
+		# print("signal here2")
+		# area.take_damage()
+
+
+func _on_attack_area_exited(area: Area2D) -> void:
+	# print("no longer attacking")
+	if area.is_in_group("Breakable"):
+		area.stop_taking_damage()

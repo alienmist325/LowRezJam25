@@ -1,13 +1,77 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmpymi11l8yus"]
+[gd_scene load_steps=19 format=3 uid="uid://dmpymi11l8yus"]
 
 [ext_resource type="Texture2D" uid="uid://bmsebdlmtvmjy" path="res://assets/temp_spaceship.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cxauyhtqb7ct3" path="res://scenes/character_body_2d.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://84dk6dua6ws3" path="res://assets/temp_attack_spritesheet.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://dmd57ppyt8aqu" path="res://assets/attack_spritesheet.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://0k88s0umifnm" path="res://assets/spaceship.png" id="4_qlg0r"]
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/Sprite2D2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D/Sprite2D2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D/Sprite2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.00872665]
+}
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 resource_name = "attack"
 length = 2.5
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,32 +96,41 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false, false, true]
 }
-
-[sub_resource type="Animation" id="Animation_dqkch"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Attack/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D/Sprite2D2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D/Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.10669]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
@@ -155,31 +228,41 @@ motion_mode = 1
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
-polygon = PackedVector2Array(0, 0, 5, 0, 5, 5, 0, 5)
+polygon = PackedVector2Array(-2, -2, 3, -2, 3, 3, -2, 3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/CollisionShape2D"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_d2wvv")
 }
+autoplay = "RESET"
+speed_scale = 4.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/CollisionShape2D"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
-position = Vector2(5, 4)
-texture = ExtResource("2_qhqgy")
-hframes = 6
-
 [node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
-texture = ExtResource("1_3vyb7")
+texture = ExtResource("4_qlg0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+visible = false
+position = Vector2(1, 0)
+rotation = 0.00872665
+texture = ExtResource("4_dqkch")
+hframes = 7
 
 [node name="Attack" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Attack"]
-position = Vector2(4, 4)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_qhqgy")
+disabled = true
 
+[connection signal="animation_finished" from="CharacterBody2D/CollisionShape2D/AnimationPlayer" to="CharacterBody2D" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_area_entered"]
+[connection signal="area_exited" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_area_exited"]
+[connection signal="body_entered" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_body_entered"]
