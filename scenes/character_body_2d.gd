@@ -44,7 +44,6 @@ func _ready():
 
 func _on_attack_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Breakable"):
-		# print("should break")
 		area.start_taking_damage()
 		
 
@@ -54,15 +53,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_attack_body_entered(body: Node2D) -> void:
-	# print("signal here1")
-	# print(body.name)
-	if body.is_in_group("hurtbox"):
-		pass
-		# print("signal here2")
-		# area.take_damage()
+	# Not relevant
+	pass
 
 
 func _on_attack_area_exited(area: Area2D) -> void:
-	# print("no longer attacking")
 	if area.is_in_group("Breakable"):
 		area.stop_taking_damage()

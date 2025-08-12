@@ -1,14 +1,16 @@
 extends Area2D
 
 var health
-
 var counter = 0
-
 var isTakingDamage = true
+var timer
+var sprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health = 2 # Replace with function body.
+	health = 2
+	timer = $StaticBody2D/CollisionShape2D/Timer
+	sprite = $StaticBody2D/CollisionShape2D/Sprite2D
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -19,18 +21,17 @@ func start_taking_damage() -> void:
 	isTakingDamage = true
 	
 func stop_taking_damage() -> void:
-	$StaticBody2D/CollisionShape2D/Timer.stop()
+	timer.stop()
 	isTakingDamage = false
 
 func take_damage() -> void:
 	health -= 1
-	$StaticBody2D/CollisionShape2D/Sprite2D.self_modulate.a = 0.5 * health
+	sprite.self_modulate.a = 0.5 * health
 	if (health <= 0):
 		queue_free()
 	
 func restart_timer():
-	$StaticBody2D/CollisionShape2D/Timer.start(0.1)
-
+	timer.start(0.1)
 
 func _on_timer_timeout() -> void:
 	if (isTakingDamage):
