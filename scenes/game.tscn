@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://omptvbx43qvo"]
+[gd_scene load_steps=6 format=4 uid="uid://omptvbx43qvo"]
 
+[ext_resource type="PackedScene" uid="uid://dckq2462sxlpp" path="res://scenes/alt_block.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dmpymi11l8yus" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://lep5wqri8ln4" path="res://scenes/block.tscn" id="2_lbhrr"]
 
@@ -12,6 +13,9 @@ physics_layer_0/collision_layer = 2
 sources/1 = SubResource("TileSetScenesCollectionSource_iywne")
 
 [node name="Game" type="Node2D"]
+
+[node name="AltBlock" parent="." instance=ExtResource("1_lnu2h")]
+position = Vector2(25, 12)
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(0, -4)
