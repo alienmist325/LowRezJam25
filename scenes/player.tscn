@@ -1,10 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmpymi11l8yus"]
+[gd_scene load_steps=20 format=3 uid="uid://dmpymi11l8yus"]
 
 [ext_resource type="Texture2D" uid="uid://bmsebdlmtvmjy" path="res://assets/temp_spaceship.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cxauyhtqb7ct3" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://84dk6dua6ws3" path="res://assets/temp_attack_spritesheet.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dmd57ppyt8aqu" path="res://assets/attack_spritesheet.png" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://0k88s0umifnm" path="res://assets/spaceship.png" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://cpc0yw5a6kri" path="res://assets/35-yea.png" id="4_qlg0r"]
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 length = 0.001
@@ -23,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D/Sprite2D2:frame")
+tracks/1/path = NodePath("CollisionShape2D/UsualPlayer:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +35,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = false
-tracks/2/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/2/path = NodePath("CollisionShape2D/AttackPlayer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -47,7 +47,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D/Sprite2D2:visible")
+tracks/3/path = NodePath("CollisionShape2D/UsualPlayer:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -59,7 +59,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D/Sprite2D:rotation")
+tracks/4/path = NodePath("CollisionShape2D/AttackPlayer:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -75,7 +75,7 @@ length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D:frame")
+tracks/0/path = NodePath("CollisionShape2D/AttackPlayer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -99,7 +99,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D/Sprite2D2:visible")
+tracks/2/path = NodePath("CollisionShape2D/UsualPlayer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -111,7 +111,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D/Sprite2D:rotation")
+tracks/3/path = NodePath("CollisionShape2D/AttackPlayer:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -123,7 +123,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D/Sprite2D:visible")
+tracks/4/path = NodePath("CollisionShape2D/AttackPlayer:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -134,11 +134,11 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_qlg0r"]
-resource_name = "moving"
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/Sprite2D2:frame")
+tracks/0/path = NodePath("CollisionShape2D/UsualPlayer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,11 +148,15 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "moving"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d2wvv"]
 _data = {
 &"RESET": SubResource("Animation_dqkch"),
 &"attack": SubResource("Animation_qhqgy"),
-&"moving": SubResource("Animation_qlg0r")
+&"idle": SubResource("Animation_qlg0r"),
+&"moving": SubResource("Animation_tuyoq")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
@@ -243,10 +247,10 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+[node name="UsualPlayer" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
 texture = ExtResource("4_qlg0r")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+[node name="AttackPlayer" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
 position = Vector2(1, 0)
 rotation = 0.00872665
 texture = ExtResource("4_dqkch")
