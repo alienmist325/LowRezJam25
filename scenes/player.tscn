@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cxauyhtqb7ct3" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://84dk6dua6ws3" path="res://assets/temp_attack_spritesheet.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dmd57ppyt8aqu" path="res://assets/attack_spritesheet.png" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://cpc0yw5a6kri" path="res://assets/35-yea.png" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://vvw2r2v031l5" path="res://assets/35-yea1.png" id="4_qlg0r"]
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 length = 0.001
@@ -249,6 +249,8 @@ centered = false
 
 [node name="UsualPlayer" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
 texture = ExtResource("4_qlg0r")
+hframes = 10
+vframes = 2
 
 [node name="AttackPlayer" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
 position = Vector2(1, 0)
