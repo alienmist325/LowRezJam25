@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dl08dud0epc5j"]
 
-[ext_resource type="Script" uid="uid://bfp4onphfsdug" path="res://scripts/rain_bullet.gd" id="1_ujjmf"]
-[ext_resource type="Texture2D" uid="uid://cgwd7fg1b6wg0" path="res://assets/temp_bullet.png" id="2_g1hbq"]
+[ext_resource type="Script" uid="uid://bfp4onphfsdug" path="res://scenes/bullets/rain_bullet/rain_bullet.gd" id="1_18o22"]
+[ext_resource type="Texture2D" uid="uid://cgwd7fg1b6wg0" path="res://assets/temp_bullet.png" id="2_hl4dm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoqba"]
 radius = 1.0
@@ -10,10 +10,10 @@ radius = 1.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 collision_mask = 3
-script = ExtResource("1_ujjmf")
+script = ExtResource("1_18o22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_eoqba")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D/CollisionShape2D"]
-texture = ExtResource("2_g1hbq")
+texture = ExtResource("2_hl4dm")

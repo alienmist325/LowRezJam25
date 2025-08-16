@@ -3,7 +3,7 @@ extends Area2D
 var SHOOTING_INTERVAL: float = 0.1 # time between getting hit
 var DIRECTION = "LEFT"
 var VELOCITY = 20
-var BULLET_SCENE: PackedScene = load("res://scenes/bullet.tscn")
+var BULLET_SCENE: PackedScene = load("res://scenes/bullets/bullet/bullet.tscn")
 
 var timer: Timer
 

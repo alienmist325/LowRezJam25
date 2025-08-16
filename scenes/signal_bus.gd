@@ -8,7 +8,7 @@ signal no_blocks_player_is_inside(number: int)
 signal death()
 signal undo()
 signal bullet_hits_player(dmg: int)
-signal go_to_level(level: int)
+signal go_to_level(level: String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,9 +27,9 @@ func reset_level():
 	reset_global_variables()
 	get_tree().reload_current_scene()
 	
-func on_go_to_level(level: int):
+func on_go_to_level(level: String):
 	reset_global_variables()
-	get_tree().change_scene_to_file("res://scenes/level_" + str(level) + ".tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/level_" + level + ".tscn")
 	
 	
 func on_player_overlaps_block_change(value: bool):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dag78my5olmru"]
 
-[ext_resource type="Script" uid="uid://cg41lg2duv3w8" path="res://scripts/bullet.gd" id="1_y25gk"]
-[ext_resource type="Texture2D" uid="uid://cgwd7fg1b6wg0" path="res://assets/temp_bullet.png" id="2_y25gk"]
+[ext_resource type="Script" uid="uid://cg41lg2duv3w8" path="res://scenes/bullets/bullet/bullet.gd" id="1_xprcw"]
+[ext_resource type="Texture2D" uid="uid://cgwd7fg1b6wg0" path="res://assets/temp_bullet.png" id="2_ql57r"]
 
 [node name="Bullet" type="Node2D"]
 
@@ -10,13 +10,13 @@ collision_layer = 8
 collision_mask = 2
 contact_monitor = true
 max_contacts_reported = 5
-script = ExtResource("1_y25gk")
+script = ExtResource("1_xprcw")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bullet"]
 polygon = PackedVector2Array(0, 0, 1, 0, 1, 1, 0, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bullet/CollisionPolygon2D"]
-texture = ExtResource("2_y25gk")
+texture = ExtResource("2_ql57r")
 
 [connection signal="body_entered" from="Bullet" to="Bullet" method="_on_body_entered"]
 [connection signal="body_shape_entered" from="Bullet" to="Bullet" method="_on_body_shape_entered"]

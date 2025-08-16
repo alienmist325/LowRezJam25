@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="LowRezJam25"
-run/main_scene="res://scenes/level_1.tscn"
+run/main_scene="res://scenes/levels/level_test_1.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://scripts/signal_bus.gd"
+SignalBus="*res://scenes/signal_bus.gd"
 
 [display]
 

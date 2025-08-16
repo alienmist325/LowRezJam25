@@ -1,6 +1,6 @@
 extends Area2D
 
-var nextLevel: int = 1 # The default, but can be overriden
+var nextLevel: String = "test_1" # The default, but can be overriden
 
 func _ready():
 	pass
