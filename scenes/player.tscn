@@ -23,7 +23,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D/UsualPlayer:frame")
+tracks/1/path = NodePath("PlayerShape/UsualPlayer:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -35,7 +35,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = false
-tracks/2/path = NodePath("CollisionShape2D/AttackPlayer:visible")
+tracks/2/path = NodePath("PlayerShape/AttackPlayer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -47,7 +47,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D/UsualPlayer:visible")
+tracks/3/path = NodePath("PlayerShape/UsualPlayer:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -59,7 +59,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D/AttackPlayer:rotation")
+tracks/4/path = NodePath("PlayerShape/AttackPlayer:rotation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -75,7 +75,7 @@ length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/AttackPlayer:frame")
+tracks/0/path = NodePath("PlayerShape/AttackPlayer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -99,7 +99,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D/UsualPlayer:visible")
+tracks/2/path = NodePath("PlayerShape/UsualPlayer:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -111,7 +111,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D/AttackPlayer:rotation")
+tracks/3/path = NodePath("PlayerShape/AttackPlayer:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -123,7 +123,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CollisionShape2D/AttackPlayer:visible")
+tracks/4/path = NodePath("PlayerShape/AttackPlayer:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -138,7 +138,7 @@ resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D/UsualPlayer:frame")
+tracks/0/path = NodePath("PlayerShape/UsualPlayer:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -224,17 +224,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(10, 10)
 
-[node name="Player" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-collision_mask = 2
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 10
 motion_mode = 1
 script = ExtResource("1_g2els")
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+[node name="PlayerShape" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-2, -2, 3, -2, 3, 3, -2, 3)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/CollisionShape2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerShape"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_d2wvv")
@@ -242,32 +240,32 @@ libraries = {
 autoplay = "RESET"
 speed_scale = 4.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/CollisionShape2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerShape"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 centered = false
 
-[node name="UsualPlayer" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+[node name="UsualPlayer" type="Sprite2D" parent="PlayerShape"]
 texture = ExtResource("4_qlg0r")
 hframes = 10
 vframes = 2
 
-[node name="AttackPlayer" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+[node name="AttackPlayer" type="Sprite2D" parent="PlayerShape"]
 position = Vector2(1, 0)
 rotation = 0.00872665
 texture = ExtResource("4_dqkch")
 hframes = 7
 
-[node name="Attack" type="Area2D" parent="CharacterBody2D"]
+[node name="Attack" type="Area2D" parent="."]
 collision_layer = 7
 collision_mask = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Attack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_qhqgy")
 disabled = true
 
-[connection signal="animation_finished" from="CharacterBody2D/CollisionShape2D/AnimationPlayer" to="CharacterBody2D" method="_on_animation_player_animation_finished"]
-[connection signal="area_entered" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_area_entered"]
-[connection signal="area_exited" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_area_exited"]
-[connection signal="body_entered" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_body_entered"]
+[connection signal="animation_finished" from="PlayerShape/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Attack" to="." method="_on_attack_area_entered"]
+[connection signal="area_exited" from="Attack" to="." method="_on_attack_area_exited"]
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
