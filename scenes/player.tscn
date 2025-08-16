@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmpymi11l8yus"]
+[gd_scene load_steps=22 format=3 uid="uid://dmpymi11l8yus"]
 
 [ext_resource type="Texture2D" uid="uid://bmsebdlmtvmjy" path="res://assets/temp_spaceship.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cxauyhtqb7ct3" path="res://scripts/player.gd" id="1_g2els"]
@@ -149,14 +149,98 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_tuyoq"]
-resource_name = "moving"
+resource_name = "accelerate_H"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/UsualPlayer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.66, 0.99, 1.33, 1.66, 1.99, 2.33, 2.66, 2.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/UsualPlayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+resource_name = "moving_H"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/UsualPlayer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/AttackPlayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_smehm"]
+resource_name = "accelerate_D"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D/UsualPlayer:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.66, 0.99, 1.33, 1.66, 1.99, 2.33, 2.66, 2.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D/UsualPlayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d2wvv"]
 _data = {
 &"RESET": SubResource("Animation_dqkch"),
+&"accelerate_D": SubResource("Animation_smehm"),
+&"accelerate_H": SubResource("Animation_tuyoq"),
 &"attack": SubResource("Animation_qhqgy"),
 &"idle": SubResource("Animation_qlg0r"),
-&"moving": SubResource("Animation_tuyoq")
+&"moving_H": SubResource("Animation_fjrip")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
@@ -253,6 +337,7 @@ hframes = 10
 vframes = 2
 
 [node name="AttackPlayer" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D"]
+visible = false
 position = Vector2(1, 0)
 rotation = 0.00872665
 texture = ExtResource("4_dqkch")
@@ -268,6 +353,7 @@ shape = SubResource("RectangleShape2D_qhqgy")
 disabled = true
 
 [connection signal="animation_finished" from="CharacterBody2D/CollisionShape2D/AnimationPlayer" to="CharacterBody2D" method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="CharacterBody2D/CollisionShape2D/AnimationPlayer" to="CharacterBody2D" method="_on_animation_player_animation_started"]
 [connection signal="area_entered" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_area_entered"]
 [connection signal="area_exited" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_area_exited"]
 [connection signal="body_entered" from="CharacterBody2D/Attack" to="CharacterBody2D" method="_on_attack_body_entered"]
