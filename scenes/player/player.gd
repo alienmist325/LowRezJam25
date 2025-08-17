@@ -131,6 +131,7 @@ func on_no_blocks_player_is_inside_change(number: int):
 func on_bullet_hits_player(dmg: float):
 	hasStuckInBlockImmunity = true
 	var timer = Timer.new()
+	add_child(timer)
 	timer.start(0.5)
 	timer.timeout.connect(turnOffStuckInBlockImmunity)
 	if dmg > level:

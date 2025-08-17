@@ -3,6 +3,7 @@ extends RigidBody2D
 # Defaults, but generally the turret overrides this
 var DIRECTION = "LEFT"
 var VELOCITY = 10
+var DAMAGE
 
 func _process(delta: float):
 	var velocity

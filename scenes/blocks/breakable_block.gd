@@ -25,6 +25,7 @@ class BreakableBlock:
 	# Called when the node enters the scene tree for the first time.
 	func _ready() -> void:
 		health = MAX_HEALTH
+		add_child(timer)
 		timer.timeout.connect(_on_timer_timeout)
 		PARENT_NODE.add_child(timer)
 		

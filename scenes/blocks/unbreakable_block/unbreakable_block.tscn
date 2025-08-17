@@ -6,14 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0fp1"]
 size = Vector2(2, 2)
 
-[node name="Node2D" type="Area2D"]
+[node name="Node2D" type="Area2D" groups=["BulletPassThrough"]]
 script = ExtResource("1_diy66")
 
-[node name="Block" type="StaticBody2D" parent="."]
+[node name="Block" type="StaticBody2D" parent="." groups=["BulletPassThrough"]]
 collision_layer = 6
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Block"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block" groups=["BulletPassThrough"]]
 shape = SubResource("RectangleShape2D_d0fp1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Block/CollisionShape2D"]

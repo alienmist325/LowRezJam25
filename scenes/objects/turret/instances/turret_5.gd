@@ -5,6 +5,6 @@ extends Node2D
 func _ready() -> void:
 	var turret = get_child(0)
 	turret.SHOOTING_INTERVAL = 0.2
-	turret.DAMAGE = 2
-	turret.DIRECTION = "DOWN"
+	turret.DAMAGE = 7
+	turret.DIRECTION = "RIGHT"
 	turret.BULLET_SCENE = load("res://scenes/bullets/bullet/bullet.tscn")

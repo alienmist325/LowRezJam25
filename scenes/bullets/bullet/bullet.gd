@@ -3,6 +3,7 @@ extends RigidBody2D
 # Defaults, but generally the turret overrides this
 var DIRECTION = "LEFT"
 var VELOCITY = 10
+var DAMAGE = 2
 
 func _process(delta: float):
 	var velocity
@@ -20,5 +21,5 @@ func _process(delta: float):
 
 func _on_body_entered(body: Node) -> void:
 	if (body.name == "Player"):
-		SignalBus.bullet_hits_player.emit(2)
+		SignalBus.bullet_hits_player.emit(DAMAGE)
 	queue_free()

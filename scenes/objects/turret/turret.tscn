@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://btlc2vrutyd71"]
 
 [ext_resource type="Script" uid="uid://bnhcq55ocw6ut" path="res://scenes/objects/turret/turret.gd" id="1_el7wl"]
-[ext_resource type="Texture2D" uid="uid://bmsebdlmtvmjy" path="res://assets/temp_spaceship.png" id="2_485p4"]
+[ext_resource type="Texture2D" uid="uid://01ws1sp8wlqd" path="res://assets/turret.png" id="2_k07qf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pp6j5"]
 radius = 3.16228
@@ -15,4 +15,4 @@ script = ExtResource("1_el7wl")
 shape = SubResource("CircleShape2D_pp6j5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D/CollisionShape2D"]
-texture = ExtResource("2_485p4")
+texture = ExtResource("2_k07qf")

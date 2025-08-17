@@ -4,6 +4,7 @@ var SHOOTING_INTERVAL: float = 0.1 # time between getting hit
 var DIRECTION = "LEFT"
 var VELOCITY = 20
 var BULLET_SCENE: PackedScene = load("res://scenes/bullets/bullet/bullet.tscn")
+var DAMAGE = 2
 
 var timer: Timer
 
@@ -25,6 +26,7 @@ func shoot():
 	var bulletBody = bullet.get_child(0)
 	bulletBody.DIRECTION = DIRECTION
 	bulletBody.VELOCITY = VELOCITY
+	bulletBody.DAMAGE = DAMAGE
 	timer.start(SHOOTING_INTERVAL)
 
 func _process(delta: float):
